@@ -9,6 +9,9 @@
 <body>
     <div id="content">
         <h1>Product Discount Calculator</h1>
+        
+
+        
         <?php 
         
         include './form.html'

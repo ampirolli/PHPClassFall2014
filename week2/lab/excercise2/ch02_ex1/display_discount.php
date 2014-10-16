@@ -21,7 +21,7 @@
         $list_price_formatted = "$".number_format($list_price, 2);
         $discount_percent_formatted = $discount_percent."%";
         $discount_formatted = "$".number_format($discount, 2);
-        $discount_price_formatted = "$".number_format($discount_price, 2)
+        $discount_price_formatted = "$".number_format($discount_price, 2);
         
         
         ?>
