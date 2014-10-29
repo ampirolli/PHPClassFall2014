@@ -8,6 +8,10 @@
 
 <body>
     <div id="content">
+        <?php if (!empty($error_message)) { ?>
+        <p class="error"><?php echo $error_message; ?></p>
+        <?php } // end if ?>
+        
         <h1>Product Discount Calculator</h1>
         
 

@@ -26,10 +26,32 @@
         $discount_formatted = "$".number_format($discount, 2);
         $discount_price_formatted = "$".number_format($discount_price, 2);
         
-        if(!empty($_POST['product_description']) === false){
+        if(empty($_POST['product_description']) === true){
         $error_message = 'Product description is a required field';
         }
         
+        if(empty($list_price)){
+            $error_message = 'List Price is a required field';
+        }
+        else if(!is_numeric($list_price)){
+            $error_message = 'List Price should be a number';
+        }else if(empty($discount_price)){
+            $error_message = 'Discount Price is a required field';
+        }
+        else if(!is_numeric($discount_price)){
+            $error_message = 'Discount Price should be a number';
+        }
+       
+        
+        
+        else {
+        $error_message = ''; }
+
+        // if an error message exists, go to the index page
+        if ($error_message != '') {
+            include('index.php');
+            exit();
+        }
         
         ?>
         

@@ -3,7 +3,7 @@
     $investment = $_POST['investment'];
     $interest_rate = $_POST['interest_rate'];
     $years = $_POST['years'];
-    $date = date('Y-m-d');
+    $date = date('Y-m-d g:ia');
     
         
     // validate investment entry
@@ -75,6 +75,7 @@
         
         <label>This Calculation was done on:</label>
         <span><?php echo $date; ?></span><br />
+        
     </div>
 </body>
 </html>
