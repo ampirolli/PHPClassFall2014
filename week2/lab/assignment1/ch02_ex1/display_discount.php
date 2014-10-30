@@ -55,7 +55,7 @@
         
         ?>
         
-        <h1>This page is under construction</h1>
+        <h1>Results</h1>
 
         <label>Product Description:</label>
         <span name = ><?php echo $product_description; ?></span><br />
