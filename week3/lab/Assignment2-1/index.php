@@ -19,13 +19,22 @@
         include './form.html';
         
          $pdo = new PDO("mysql:host=localhost;dbname=phpclassfall2014", "root", "");
-         /*$dbs = $db->prepare('');
+         $dbs = $pdo->prepare('select * from users');
         
-         $dbs->bindParam(':NAME', $Name, PDO::PARAM_STR);
-         $dbs->bindParam(':PHONE', $Phone, PDO::PARAM_STR);
-         $dbs->bindParam(':EMAIL', $Email, PDO::PARAM_STR);
-         $dbs->bindParam(':ZIP', $Zip, PDO::PARAM_STR);*/
-         
+         $dbs->bindParam(':Name', $Name, PDO::PARAM_STR);
+         $dbs->bindParam(':Phone', $Phone, PDO::PARAM_STR);
+         $dbs->bindParam(':Email', $Email, PDO::PARAM_STR);
+         $dbs->bindParam(':Zip', $Zip, PDO::PARAM_STR);
+         if($error_message = ''){
+            if ( $pdo->exec($dbs) ) {
+                echo 'Saved Data';
+            } else {
+                echo 'Data not Saved';
+            }
+            }else{
+                echo '';
+            }
+
         
         ?>
     </div>
