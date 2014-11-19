@@ -3,17 +3,14 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
-    $heardFrom = filter_input(INPUT_POST, 'heard_from');
-    $updates = filter_input(INPUT_POST, 'wants_updates');
+    $heard_from = $_POST['heard_from'];
+    $checkbox = $_POST['wants_updates'];
+    $wants_updates = $_POST['wants_updates'];
     $contact = $_POST['contact_via'];
     $comments = $_POST['comments'];
-    
-
     // get the rest of the data for the form
-
     // for the heard_from radio buttons,
     // display a value of 'Unknown' if the user doesn't select a radio button
-
     // for the wants_updates check box,
     // display a value of 'Yes' or 'No'
 ?>
@@ -29,44 +26,31 @@
         <h1>Account Information</h1>
 
         <label>Email Address:</label>
-        <span><?php echo htmlspecialchars($email); ?></span><br />
+        <span> <?php echo htmlspecialchars($email); ?> </span><br />
 
         <label>Password:</label>
-        <span><?php echo htmlspecialchars($password); ?></span><br />
+        <span> <?php echo htmlspecialchars($password); ?> </span><br />
 
         <label>Phone Number:</label>
-        <span><?php echo htmlspecialchars($phone); ?></span><br />
+        <span> <?php echo htmlspecialchars($phone); ?> </span><br />
 
         <label>Heard From:</label>
-        <span><?php
-                
-                if ( isset($_POST['heard_from'])) {
-                    $heardFrom = $_POST['heard_from'];
-                }else{               
-                    echo 'Unknown';  
-                }
-                echo htmlspecialchars($heardFrom);
-                ?></span><br />
+        <span> <?php echo htmlspecialchars($heard_from); ?> </span><br />
 
         <label>Send Updates:</label>
-        <span><?php 
-                if ( isset($_POST['wants_updates'])) {
-                            echo 'Yes';
-                        }else{               
-                            echo 'No';  
-                        } 
-                ?></span><br />
+        <span> <?php if(isset($wants_updates)){
+            echo 'yes';
+        }else{
+            echo 'no';
+        } ?></span><br />
 
         <label>Contact Via:</label>
         <span><?php echo htmlspecialchars($contact); ?></span><br /><br />
 
         <span>Comments:</span><br />
-        <span><?php 
-                
-                $comments =  htmlspecialchars($comments, ENT_COMPAT,'ISO-8859-1', false); 
-                echo nl2br($comments);;
-                ?></span><br />
-                
+        <span><?php echo htmlspecialchars($comments);
+        echo nl2br($comments);?></span><br />
+        
         <p>&nbsp;</p>
     </div>
 </body>

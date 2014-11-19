@@ -27,6 +27,7 @@
 
     <fieldset>
     <legend>Settings</legend>
+
         <p>How did you hear about us?</p>
         <input type="radio" name="heard_from" value="Search Engine" />
         Search engine<br />
