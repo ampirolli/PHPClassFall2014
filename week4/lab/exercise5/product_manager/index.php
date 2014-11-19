@@ -1,105 +1,82 @@
 <?php
-    require_once('database.php');
+require('../model/database.php');
+require('../model/product_db.php');
+require('../model/category_db.php');
 
-    // Get category ID
-    if(!isset($category_id)) {
-        //$category_id = $_GET['category_id'];
-        if (!isset($category_id)) {
-            $category_id = 1;
-        }
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+} else if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+} else {
+    $action = 'list_products';
+}
+
+if ($action == 'list_products') {
+    // Get the current category ID
+    $category_id = $_GET['category_id'];
+    if (!isset($category_id)) {
+        $category_id = 1;
     }
 
-    // Get name for current category
-    $query = "SELECT * FROM categories
-              WHERE categoryID = $category_id";
-    $category = $db->query($query);
-    $category = $category->fetch();
-    $category_name = $category['categoryName'];
+    // Get product and category data
+    $category_name = get_category_name($category_id);
+    $categories = get_categories();
+    $products = get_products_by_category($category_id);
 
-    // Get all categories
-    $query = 'SELECT * FROM categories
-              ORDER BY categoryID';
-    $categories = $db->query($query);
+    // Display the product list
+    include('product_list.php');
+}
 
-    // Get products for selected category
-    $query = "SELECT * FROM products
-              WHERE categoryID = $category_id
-              ORDER BY productID";
-    $products = $db->query($query);
+else if ($action == 'delete_product') {
+    // Get the IDs
+    $product_id = $_POST['product_id'];
+    $category_id = $_POST['category_id'];
+
+    // Delete the product
+    delete_product($product_id);
+
+    // Display the Product List page for the current category
+    header("Location: .?category_id=$category_id");
+} else if ($action == 'show_add_form') {
+    $categories = get_categories();
+    include('product_add.php');
+} else if ($action == 'add_product') {
+    $category_id = $_POST['category_id'];
+    $code = $_POST['code'];
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+
+    // Validate the inputs
+    if (empty($code) || empty($name) || empty($price)) {
+        $error = "Invalid product data. Check all fields and try again.";
+        include('../errors/error.php');
+    } else {
+        add_product($category_id, $code, $name, $price);
+
+        // Display the Product List page for the current category
+        header("Location: .?category_id=$category_id");
+    }
+}
+
+if ($action == 'list_categories') {
+    $category_id = $_GET['category_id'];
+    if (!isset($category_id)) {
+        $category_id = 1;
+    }
+    // Get product and category data
+    $category_name = get_category_name($category_id);
+    $categories = get_categories();
+       
+    include('category_list.php');    
+}
+else if ($action == 'delete_category'){
+    $category_id = $_POST['category_id'];    
+    delete_category($category_id);
+    header("Location: .?action=list_categories");    
+}
+else if ($action == 'add_category'){
+    $name = $_POST['name'];    
+    add_category($name);
+    header("Location: .?action=list_categories");    
+}
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<!-- the head section -->
-<head>
-    <title>My Guitar Shop</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-</head>
-
-<!-- the body section -->
-<body>
-    <div id="page">
-
-    <div id="header">
-        <h1>Product Manager</h1>
-    </div>
-
-    <div id="main">
-
-        <h1>Product List</h1>
-
-        <div id="sidebar">
-            <!-- display a list of categories -->
-            <h2>Categories</h2>
-            <ul class="nav">
-            <?php foreach ($categories as $category) : ?>
-                <li>
-                <a href="?category_id=<?php echo $category['categoryID']; ?>">
-                    <?php echo $category['categoryName']; ?>
-                </a>
-                </li>
-            <?php endforeach; ?>
-            </ul>
-        </div>
-
-        <div id="content">
-            <!-- display a table of products -->
-            <h2><?php echo $category_name; ?></h2>
-            <table>
-                <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    <th class="right">Price</th>
-                    <th>&nbsp;</th>
-                </tr>
-                <?php foreach ($products as $product) : ?>
-                <tr>
-                    <td><?php echo $product['productCode']; ?></td>
-                    <td><?php echo $product['productName']; ?></td>
-                    <td class="right"><?php echo $product['listPrice']; ?></td>
-                    <td><form action="delete_product.php" method="post"
-                              id="delete_product_form">
-                        <input type="hidden" name="product_id"
-                               value="<?php echo $product['productID']; ?>" />
-                        <input type="hidden" name="category_id"
-                               value="<?php echo $product['categoryID']; ?>" />
-                        <input type="submit" value="Delete" />
-                    </form></td>
-                </tr>
-                <?php endforeach; ?>
-            </table>
-            <p><a href="add_product_form.php">Add Product</a></p>
-            <p><a href="category_list.php">List Categories</a></p>
-        </div>
-    </div>
-
-    <div id="footer">
-        <p>
-            &copy; <?php echo date("Y"); ?> My Guitar Shop, Inc.
-        </p>
-    </div>
-
-    </div><!-- end page -->
-</body>
-</html>

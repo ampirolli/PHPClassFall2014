@@ -4,8 +4,8 @@
     <!-- the head section -->
     <head>
         <title>My Guitar Shop</title>
-        <link rel="stylesheet" type="text/css"
-              href="/book_apps/ch05_guitar_shop/main.css" />
+        <link rel="stylesheet" type="text/css" href="../main.css" />
+
     </head>
 
     <!-- the body section -->
