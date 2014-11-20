@@ -53,6 +53,6 @@ and open the template in the editor.
             }
             
         ?>
-    <br/><p><a href="index.php">Go back</a></p>   
+    <br/><p><a href="index.php">Return</a></p>   
     </body>
 </html>
