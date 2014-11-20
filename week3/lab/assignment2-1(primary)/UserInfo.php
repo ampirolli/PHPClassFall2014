@@ -43,7 +43,7 @@ and open the template in the editor.
                 foreach ($results as $key => $value) {
                     echo '<tr>';
                      echo '<td>', $key ,'</td>';
-                     echo '<td>', $value['name'] ,'</td>';
+                     echo '<td>', $value['fullname'] ,'</td>';
                      echo '<td>', $value['email'] ,'</td>';
                      echo '<td>', $value['phone'] ,'</td>';
                      echo '<td>', $value['zip'] ,'</td>';          
