@@ -35,6 +35,7 @@ and open the template in the editor.
             if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
                 
                 $results = $dbs->fetchAll(PDO::FETCH_ASSOC);
+                echo '<table border="1">'; 
                 echo '<tr><th>ID</th><th>Name</th><th>Email</th>';
                 echo '<th>Phone</th><th>Zip</th><th></th><th></th></tr>';
                 foreach ($results as $key => $value) {
@@ -45,7 +46,7 @@ and open the template in the editor.
                      echo '<td>', $value['phone'] ,'</td>';
                      echo '<td>', $value['zip'] ,'</td>';
                      echo '<td><a href="update_page.php">Update</a></td>';          
-                     echo '<td><a href="delete_user.php?id=',$value['id'],'">Delete</a></td>';
+                     echo '<td><a href="delete_user.php?id=',$value['id'],'">Remove</a></td>';
                                
                     echo '</tr>';
                 }
@@ -53,6 +54,6 @@ and open the template in the editor.
             }
             
         ?>
-    <br/><p><a href="index.php">Go back</a></p>   
+    <br/><p><a href="index.php">Return</a></p>   
     </body>
 </html>

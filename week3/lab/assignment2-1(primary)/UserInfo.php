@@ -36,7 +36,8 @@ and open the template in the editor.
         
             if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
                 
-                $results = $dbs->fetchAll(PDO::FETCH_ASSOC); 
+                $results = $dbs->fetchAll(PDO::FETCH_ASSOC);
+                echo '<table border="1">'; 
                 echo '<tr><th>ID</th><th>Name</th><th>Email</th>';
                 echo '<th>Phone</th><th>Zip</th></tr>';
                 foreach ($results as $key => $value) {
