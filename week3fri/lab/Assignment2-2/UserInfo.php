@@ -35,18 +35,17 @@ and open the template in the editor.
             if ( $dbs->execute() && $dbs->rowCount() > 0 ) {
                 
                 $results = $dbs->fetchAll(PDO::FETCH_ASSOC);
-                
-                
-                echo '<table border="1">'; 
                 echo '<tr><th>ID</th><th>Name</th><th>Email</th>';
-                echo '<th>Phone</th><th>Zip</th></tr>';
+                echo '<th>Phone</th><th>Zip</th><th></th><th></th></tr>';
                 foreach ($results as $key => $value) {
                     echo '<tr>';
                      echo '<td>', $key ,'</td>';
-                     echo '<td>', $value['name'] ,'</td>';
+                     echo '<td>', $value['fullname'] ,'</td>';
                      echo '<td>', $value['email'] ,'</td>';
                      echo '<td>', $value['phone'] ,'</td>';
-                     echo '<td>', $value['zip'] ,'</td>';          
+                     echo '<td>', $value['zip'] ,'</td>';
+                     echo '<td><a href="update_page.php">Update</a></td>';          
+                     echo '<td><a href="delete_user.php?id=',$value['id'],'">Delete</a></td>';
                                
                     echo '</tr>';
                 }
