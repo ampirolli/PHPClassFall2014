@@ -45,8 +45,8 @@ and open the template in the editor.
                      echo '<td>', $value['email'] ,'</td>';
                      echo '<td>', $value['phone'] ,'</td>';
                      echo '<td>', $value['zip'] ,'</td>';
-                     echo '<td><a href="update_page.php">Update</a></td>';          
-                     echo '<td><a href="delete_user.php?id=',$value['id'],'">Remove</a></td>';
+                     echo '<td><a href="UpdateForm.php">Update</a></td>';          
+                     echo '<td><a href="deleteUser.php?id=',$value['id'],'">Remove</a></td>';
                                
                     echo '</tr>';
                 }
