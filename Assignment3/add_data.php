@@ -2,12 +2,12 @@
 
 
 $email = $_POST['email'];
-$passwords = $_POST['passwords'];
+$passwords = $_POST['password'];
 
 
 
 if ( filter_var($email, FILTER_VALIDATE_EMAIL) != TRUE){
-    $error = "Email is not a valid format.";
+    $error = "Email is not valid format.";
     include('error.php'); 
 }
 if (empty($passwords)){

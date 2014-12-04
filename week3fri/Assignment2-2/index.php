@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <form action = "add_user.php" method="post">
+        <form action = "addUser.php" method="post">
             
         <label>Name:</label>
         <input type="input" name="name"/><br />
@@ -25,6 +25,8 @@
         <input type="submit" value="Save Data" /><br />
             </div>
         </form>
+        
+        <a href="userInfo.php">View Data</a>
        
     </body>
 </html>

@@ -25,4 +25,4 @@ if (empty($name) || empty($phone) || empty($email) || empty($zip) ) {
     // Display the Product List page
     include('UserInfo.php');
 }
-?>
+
