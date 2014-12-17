@@ -3,6 +3,9 @@ session_start();
 $email = $_POST['email'];
 $passwords = $_POST['password'];
 
+
+include './validator.php';
+
 if ( filter_var($email, FILTER_VALIDATE_EMAIL) != TRUE){
     $error = "Email is not valid format.";
     include('error.php'); 
